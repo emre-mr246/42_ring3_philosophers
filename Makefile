@@ -6,11 +6,11 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/07/31 10:48:17 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/04 08:20:00 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES				= main
+FILES				= main utils
 
 BONUS_FILES			= 
 

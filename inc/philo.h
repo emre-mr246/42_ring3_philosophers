@@ -6,13 +6,15 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/07/31 06:19:40 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/04 08:20:14 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-int kek(int a);
+// UTILS
+void exit_with_msg(char *error);
+void err_arg(void);
 
 #endif
