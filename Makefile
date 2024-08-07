@@ -6,11 +6,11 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/08/04 08:20:00 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/07 16:08:27 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES				= main utils
+FILES				= main utils init input
 
 BONUS_FILES			= 
 

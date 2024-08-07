@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/04 08:20:34 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/07 14:17:54 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,43 @@ void err_arg(void)
 	ft_putendl_fd("Time it takes for a philosopher to eat: 200 ms", 2);
 	ft_putendl_fd("Time it takes for a philosopher to sleep: 200 ms", 2);
 	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7", 2);
-	exit(-1);
 }
 
-void exit_with_msg(char *error)
+/*
+ * @brief Converts a string to an long.
+ *
+ * @param str The string to convert,
+ *  which may include optional whitespace and a sign.
+ * @return The long representation of the string.
+ */
+long	ft_atol(const char *str)
 {
-	ft_putendl_fd(error, 2);
-	exit(-1);
+	long	result;
+	int	sign;
+
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	sign = 1;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign *= -1;
+		str++;
+	}
+	result = 0;
+	while (*str >= '0' && *str <= '9')
+	{
+		result = (result * 10) + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }
+
+int ft_issign(char c)
+{
+	if (c == '+' || c == '-')
+		return (1);
+	else
+		return (0);
+}
+
