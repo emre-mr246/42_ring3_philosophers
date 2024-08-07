@@ -6,11 +6,14 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/07 14:17:54 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/07 21:02:24 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib/libft/inc/libft.h"
+#include "../../inc/philo.h"
+#include <errno.h>
+#include <stdio.h>
 
 void err_arg(void)
 {
@@ -58,5 +61,48 @@ int ft_issign(char c)
 		return (1);
 	else
 		return (0);
+}
+
+void handle_mutex_error(int status, t_opcode opcode)
+{
+    if (status == 0)
+        return ;
+    if (status == EINVAL) 
+    {
+        if (opcode == LOCK || opcode == UNLOCK) 
+            ft_putendl_fd("Error: Invalid mutex value.", stderr);
+        else if (opcode == INIT) 
+            ft_putendl_fd("Error: Invalid initialization attribute for mutex.", stderr);
+    }
+    else if (status == EDEADLK) 
+        ft_putendl_fd("Error: Deadlock detected. Thread cannot proceed.", stderr);
+    else if (status == ENOMEM) 
+        ft_putendl_fd("Error: Not enough memory to create mutex.", stderr);
+    else if (status == EPERM) 
+        ft_putendl_fd("Error: No permission. Mutex is not locked by this thread.", stderr);
+    else if (status == EBUSY) 
+        ft_putendl_fd("Error: Mutex is already locked.", stderr);
+    else 
+        ft_putendl_fd("Error: Unknown error code.", stderr);
+}
+
+void handle_mutex(pthread_mutex_t *mutex, t_opcode opcode)
+{
+    int status;
+
+    if (opcode == LOCK)
+        status = pthread_mutex_lock(mutex);
+	else if (opcode == UNLOCK)
+        status = pthread_mutex_unlock(mutex);
+    else if (opcode == INIT)
+        status = pthread_mutex_init(mutex, NULL);
+    else if (opcode == DESTROY)
+        status = pthread_mutex_destroy(mutex);
+    else
+	{
+        ft_putendl_fd("Invalid operation code", 2);
+        return;
+    }
+    handle_mutex_error(status, opcode);
 }
 
