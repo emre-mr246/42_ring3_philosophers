@@ -6,18 +6,18 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 07:33:47 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:16:04 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 #include "../../lib/libft/inc/libft.h"
 
-int init_philos(t_table *table)
+int	init_philos(t_table *table)
 {
-	t_philo **philos;
-	t_philo *philo;
-	int i;
+	t_philo	**philos;
+	t_philo	*philo;
+	int		i;
 
 	philos = (t_philo **)ft_calloc(sizeof(t_philo *), table->philo_count);
 	if (!philos)
@@ -25,7 +25,7 @@ int init_philos(t_table *table)
 	i = 0;
 	while (i < table->philo_count)
 	{
-	 	philo = (t_philo *)ft_calloc(sizeof(t_philo), 1);
+		philo = (t_philo *)ft_calloc(sizeof(t_philo), 1);
 		if (!philo)
 			return (-1);
 		philo->id = i + 1;
@@ -38,19 +38,18 @@ int init_philos(t_table *table)
 	return (0);
 }
 
-
-int init_table(t_table **table)
+int	init_table(t_table **table)
 {
-	t_table *tmp;
+	t_table	*tmp;
 
 	tmp = (t_table *)ft_calloc(sizeof(t_table), 1);
 	if (!tmp)
 		return (-1);
 	*table = tmp;
-	return (0);	
+	return (0);
 }
 
-static void assign_forks(t_table *table, t_philo *philo)
+static void	assign_forks(t_table *table, t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -64,12 +63,12 @@ static void assign_forks(t_table *table, t_philo *philo)
 	}
 }
 
-int init_forks(t_table *table)
+int	init_forks(t_table *table)
 {
-	t_fork **forks;
-	t_fork *fork;
-	int i;
-	
+	t_fork	**forks;
+	t_fork	*fork;
+	int		i;
+
 	forks = (t_fork **)ft_calloc(sizeof(t_fork *), table->philo_count);
 	if (!forks)
 		return (-1);
@@ -87,5 +86,5 @@ int init_forks(t_table *table)
 	i = -1;
 	while (++i < table->philo_count)
 		assign_forks(table, table->philos[i]);
-	return (0);	
+	return (0);
 }

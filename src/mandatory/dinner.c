@@ -6,13 +6,13 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 11:37:35 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:16:08 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 
-static void eating(t_table *table, t_philo *philo)
+static void	eating(t_table *table, t_philo *philo)
 {
 	if (get_bool(&table->table_mutex, &table->dinner_over))
 		return ;
@@ -23,7 +23,9 @@ static void eating(t_table *table, t_philo *philo)
 	set_long(&philo->philo_mutex, &philo->last_meal_time, get_time_milisec());
 	print_status(EATING, table, philo);
 	increase_long(&philo->philo_mutex, &philo->meals_counter);
-	if (!get_bool(&philo->philo_mutex, &philo->is_full) && table->max_meal_per_philo > 0 && get_long(&philo->philo_mutex, &philo->meals_counter) == table->max_meal_per_philo)
+	if (!get_bool(&philo->philo_mutex, &philo->is_full)
+		&& table->max_meal_per_philo > 0 && get_long(&philo->philo_mutex,
+			&philo->meals_counter) == table->max_meal_per_philo)
 	{
 		set_bool(&philo->philo_mutex, &philo->is_full, true);
 		increase_long(&table->table_mutex, &table->full_philo_count);
@@ -33,15 +35,15 @@ static void eating(t_table *table, t_philo *philo)
 	handle_mutex(&philo->right_fork->mutex, UNLOCK);
 }
 
-static void sleeping(t_table *table, t_philo *philo)
+static void	sleeping(t_table *table, t_philo *philo)
 {
 	print_status(SLEEPING, table, philo);
 	usleep_lossless(table->time_to_sleep, table);
 }
 
-void thinking(t_table *table, t_philo *philo, bool dinner_started)
+void	thinking(t_table *table, t_philo *philo, bool dinner_started)
 {
-	long t_think;
+	long	t_think;
 
 	if (dinner_started)
 		print_status(THINKING, table, philo);
@@ -52,24 +54,24 @@ void thinking(t_table *table, t_philo *philo, bool dinner_started)
 		usleep_lossless((t_think * 50) / 100, table);
 }
 
-static void *start_dinner(void *data)
+static void	*start_dinner(void *data)
 {
-	t_table *table;
-	t_philo *philo;
+	t_table	*table;
+	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	table = philo->table; 
+	table = philo->table;
 	if (table->philo_count == 1)
 	{
 		lone_philo(table, philo);
 		return (NULL);
 	}
-	while(!get_bool(&table->table_mutex, &table->all_threads_ready))
+	while (!get_bool(&table->table_mutex, &table->all_threads_ready))
 		continue ;
 	increase_long(&table->table_mutex, &table->running_threads_count);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, table->start_time);
 	wait_some_philos(table, philo);
-	while(!get_bool(&table->table_mutex, &table->dinner_over))
+	while (!get_bool(&table->table_mutex, &table->dinner_over))
 	{
 		if (get_bool(&philo->philo_mutex, &philo->is_full))
 			break ;
@@ -80,16 +82,17 @@ static void *start_dinner(void *data)
 	return (NULL);
 }
 
-int dinner(t_table *table)
+int	dinner(t_table *table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < table->philo_count)
 	{
-		handle_thread(&table->philos[i]->thread_id, start_dinner, table->philos[i], CREATE);
+		handle_thread(&table->philos[i]->thread_id, start_dinner,
+			table->philos[i], CREATE);
 		i++;
-	}	
+	}
 	table->start_time = get_time_milisec();
 	handle_thread(&table->camera, watch_dinner, table, CREATE);
 	set_bool(&table->table_mutex, &table->all_threads_ready, true);

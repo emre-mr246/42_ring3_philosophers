@@ -6,21 +6,23 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 07:47:43 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:15:49 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 #include "../../lib/libft/inc/libft.h"
 
-void err_arg(void)
+void	err_arg(void)
 {
 	ft_putendl_fd("Usage: ./philo 5 800 200 200 7", 2);
 	ft_putendl_fd("Number of philosophers: 5", 2);
-	ft_putendl_fd("Time before a philosopher dies if they don't eat: 800 ms", 2);
+	ft_putendl_fd("Time before a philosopher dies if they don't eat: 800 ms",
+		2);
 	ft_putendl_fd("Time it takes for a philosopher to eat: 200 ms", 2);
 	ft_putendl_fd("Time it takes for a philosopher to sleep: 200 ms", 2);
-	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7", 2);
+	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7",
+		2);
 }
 
 /*
@@ -55,7 +57,7 @@ long	ft_atol(const char *str)
 	return (result * sign);
 }
 
-int ft_issign(char c)
+int	ft_issign(char c)
 {
 	if (c == '+' || c == '-')
 		return (1);
@@ -63,12 +65,12 @@ int ft_issign(char c)
 		return (0);
 }
 
-void clean(t_table *table)
+void	clean(t_table *table)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < table->philo_count)
+	while (i < table->philo_count)
 	{
 		handle_mutex(&table->philos[i]->philo_mutex, DESTROY);
 		free(table->forks[i]);

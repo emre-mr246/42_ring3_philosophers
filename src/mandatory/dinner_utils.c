@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 11:53:51 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:16:10 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "../../lib/libft/inc/libft.h"
 #include <unistd.h>
 
-void print_status(t_philo_status status, t_table *table, t_philo *philo)
+void	print_status(t_philo_status status, t_table *table, t_philo *philo)
 {
-	long elapsed_time;
+	long	elapsed_time;
 
 	if (get_bool(&philo->philo_mutex, &philo->is_full))
 		return ;
@@ -39,21 +39,20 @@ void print_status(t_philo_status status, t_table *table, t_philo *philo)
 	handle_mutex(&table->print_mutex, UNLOCK);
 }
 
-void lone_philo(t_table *table, t_philo *philo)
+void	lone_philo(t_table *table, t_philo *philo)
 {
-	while(!get_bool(&table->table_mutex, &table->all_threads_ready))
+	while (!get_bool(&table->table_mutex, &table->all_threads_ready))
 		continue ;
 	increase_long(&table->table_mutex, &table->running_threads_count);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, table->start_time);
 	usleep(table->time_to_die);
 }
 
-void wait_some_philos(t_table *table, t_philo *philo)
+void	wait_some_philos(t_table *table, t_philo *philo)
 {
 	if (table->philo_count % 2 == 0)
 		if (philo->id % 2 == 0)
 			usleep_lossless(50000, table);
-	else
-		if (philo->id % 2)
+		else if (philo->id % 2)
 			thinking(table, philo, false);
 }

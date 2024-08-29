@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:13:45 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 07:33:23 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 15:16:02 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "../../lib/libft/inc/libft.h"
 #include <limits.h>
 
-static int check_input(char **av)
+static int	check_input(char **av)
 {
-	int i;
-	long tmp;
+	int		i;
+	long	tmp;
 
 	i = 1;
 	while (av[i])
@@ -34,13 +34,13 @@ static int check_input(char **av)
 	return (1);
 }
 
-static void seconds_to_miliseconds(t_table *table)
+static void	seconds_to_miliseconds(t_table *table)
 {
 	table->time_to_eat *= 1000;
 	table->time_to_sleep *= 1000;
 }
 
-int handle_input(t_table *table, char **av)
+int	handle_input(t_table *table, char **av)
 {
 	if (check_input(av) == -1)
 		return (-1);
@@ -50,8 +50,8 @@ int handle_input(t_table *table, char **av)
 	table->time_to_sleep = ft_atol(av[4]);
 	if (table->philo_count == 0)
 		return (-1);
-	if (table->time_to_die < 60 || table->time_to_eat < 60 ||
-	table->time_to_sleep < 60)
+	if (table->time_to_die < 60 || table->time_to_eat < 60
+		|| table->time_to_sleep < 60)
 		return (-1);
 	seconds_to_miliseconds(table);
 	table->max_meal_per_philo = ft_atol(av[5]);
