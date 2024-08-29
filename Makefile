@@ -6,11 +6,11 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/08/07 16:08:27 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/29 07:42:38 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES				= main utils init input
+FILES				= main utils init input dinner get_and_set time thread mutex dinner_utils monitor
 
 BONUS_FILES			= 
 
@@ -18,7 +18,7 @@ NAME				= philo
 BONUS_NAME			= philo_bonus
 
 CC					= gcc
-CCFLAGS				= #-Wall -Wextra -Werror
+CCFLAGS				= -O3 #-Wall -Wextra -Werror
 MAKEFLAGS			= --no-print-directory
 RM					= rm -rf
 

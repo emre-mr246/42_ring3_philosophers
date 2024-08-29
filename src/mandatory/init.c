@@ -6,77 +6,86 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/07 22:24:07 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 07:33:47 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 #include "../../lib/libft/inc/libft.h"
 
-t_philo *init_philos(t_table *table)
+int init_philos(t_table *table)
 {
+	t_philo **philos;
 	t_philo *philo;
 	int i;
 
- 	philo = ft_calloc(sizeof( t_philo),table->philo_count);
-	if (!philo)
-		return (NULL);
+	philos = (t_philo **)ft_calloc(sizeof(t_philo *), table->philo_count);
+	if (!philos)
+		return (-1);
 	i = 0;
 	while (i < table->philo_count)
 	{
-		philo = table->philos + i;
+	 	philo = (t_philo *)ft_calloc(sizeof(t_philo), 1);
+		if (!philo)
+			return (-1);
 		philo->id = i + 1;
-		philo->is_full = false;
+		philo->table = table;
+		handle_mutex(&philo->philo_mutex, INIT);
+		philos[i] = philo;
 		i++;
 	}
-	return (philo);
+	table->philos = philos;
+	return (0);
 }
 
-t_fork *init_forks(t_table *table)
-{
-	t_fork *fork;
 
-	fork = ft_calloc(sizeof(t_fork), table->philo_count);
-	if (!fork)
-		return (NULL);
-	return (fork);
+int init_table(t_table **table)
+{
+	t_table *tmp;
+
+	tmp = (t_table *)ft_calloc(sizeof(t_table), 1);
+	if (!tmp)
+		return (-1);
+	*table = tmp;
+	return (0);	
 }
 
-void assign_forks(t_table *table)
+static void assign_forks(t_table *table, t_philo *philo)
 {
-	t_philo *philo;
-
-	philo = table->philos;
 	if (philo->id % 2 == 0)
 	{
-		philo->left_fork = &table->forks[philo->id - 1];
-		philo->right_fork = &table->forks[philo->id % table->philo_count];
+		philo->left_fork = table->forks[philo->id % table->philo_count];
+		philo->right_fork = table->forks[philo->id - 1];
 	}
 	else
 	{
-		philo->left_fork = &table->forks[philo->id % table->philo_count];
-		philo->right_fork = &table->forks[philo->id - 1];
+		philo->left_fork = table->forks[philo->id - 1];
+		philo->right_fork = table->forks[philo->id % table->philo_count];
 	}
 }
 
-t_table *init_table()
+int init_forks(t_table *table)
 {
-	t_table *table;
+	t_fork **forks;
+	t_fork *fork;
 	int i;
-
-	table = (t_table *)ft_calloc(sizeof(t_table), 1);
-	if (!table)
-		return (NULL);
-	table->philos = init_philos(table);
-	table->forks = init_forks(table);
-	assign_forks(table);
-	i = 0;
-	while (i < table->philo_count)
+	
+	forks = (t_fork **)ft_calloc(sizeof(t_fork *), table->philo_count);
+	if (!forks)
+		return (-1);
+	i = -1;
+	while (++i < table->philo_count)
 	{
-		handle_mutex(&table->forks[i].fork, INIT);
-		table->forks[i].id = i;
-		i++;
+		fork = (t_fork *)ft_calloc(sizeof(t_fork), 1);
+		if (!fork)
+			return (-1);
+		handle_mutex(&fork->mutex, INIT);
+		fork->id = i;
+		forks[i] = fork;
 	}
-	philo_init(table);
-	return (table);	
+	table->forks = forks;
+	i = -1;
+	while (++i < table->philo_count)
+		assign_forks(table, table->philos[i]);
+	return (0);	
 }

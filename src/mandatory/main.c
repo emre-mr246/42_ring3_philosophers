@@ -6,12 +6,11 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/07 16:11:44 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 07:33:01 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
-#include "../../lib/libft/inc/libft.h"
 
 int main(int ac, char **av)
 {
@@ -22,9 +21,14 @@ int main(int ac, char **av)
         err_arg();
 		return (-1);
 	}
-	table = init_table();
+	init_table(&table);
 	if (handle_input(table, av) == -1)
+	{
+        err_arg();
 		return (-1);
-	
-
+	}
+	init_philos(table);
+	init_forks(table);
+	dinner(table);
+	return (0);
 }

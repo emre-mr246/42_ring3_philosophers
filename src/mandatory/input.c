@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:13:45 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/07 16:24:30 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 07:33:23 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static int check_input(char **av)
 
 static void seconds_to_miliseconds(t_table *table)
 {
-	table->time_to_die *= 1000;
 	table->time_to_eat *= 1000;
 	table->time_to_sleep *= 1000;
 }
@@ -55,5 +54,10 @@ int handle_input(t_table *table, char **av)
 	table->time_to_sleep < 60)
 		return (-1);
 	seconds_to_miliseconds(table);
-	return (1);
+	table->max_meal_per_philo = ft_atol(av[5]);
+	if (!av[5])
+		table->max_meal_per_philo = INT_MAX;
+	else if (table->max_meal_per_philo <= 0)
+		return (-1);
+	return (0);
 }
