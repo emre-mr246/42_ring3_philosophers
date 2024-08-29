@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 07:41:34 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 11:37:35 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ static void sleeping(t_table *table, t_philo *philo)
 	usleep_lossless(table->time_to_sleep, table);
 }
 
-void thinking(t_table *table, t_philo *philo)
+void thinking(t_table *table, t_philo *philo, bool dinner_started)
 {
 	long t_think;
 
-	print_status(THINKING, table, philo);
+	if (dinner_started)
+		print_status(THINKING, table, philo);
 	if (table->philo_count % 2 == 0)
 		return ;
 	t_think = (table->time_to_eat * 2) - table->time_to_sleep;
@@ -67,14 +68,14 @@ static void *start_dinner(void *data)
 		continue ;
 	increase_long(&table->table_mutex, &table->running_threads_count);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, table->start_time);
-	de_synchronize_philos(table, philo);
+	wait_some_philos(table, philo);
 	while(!get_bool(&table->table_mutex, &table->dinner_over))
 	{
 		if (get_bool(&philo->philo_mutex, &philo->is_full))
 			break ;
 		eating(table, philo);
 		sleeping(table, philo);
-		thinking(table, philo);
+		thinking(table, philo, true);
 	}
 	return (NULL);
 }

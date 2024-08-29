@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 07:39:23 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 11:42:47 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,10 @@ typedef struct s_table
 void err_arg(void);
 long	ft_atol(const char *str);
 int ft_issign(char c);
+void clean(t_table *table);
 
-// CHECK INPUT
+// INPUT
 int handle_input(t_table *table, char **av);
-
-void handle_mutex(pthread_mutex_t *mutex, t_operation opcode);
 
 // INIT
 int init_table(t_table **table);
@@ -103,22 +102,17 @@ void increase_long(pthread_mutex_t *mutex, long *value);
 void usleep_lossless(long usec, t_table *table);
 long get_time_milisec();
 
-// THREAD
+// THREADS
 void handle_thread(pthread_t *thread, void *(*func)(void *), void *data, t_operation opcode);
-
-// MUTEX
 void handle_mutex(pthread_mutex_t *mutex, t_operation opcode);
-
-// CLEAN
-void clean(t_table *table);
 
 // DINNER
 int dinner(t_table *table);
-void thinking(t_table *table, t_philo *philo);
+void thinking(t_table *table, t_philo *philo, bool dinner_started);
 
 // DINNER UTILS
 void print_status(t_philo_status status, t_table *table, t_philo *philo);
-void de_synchronize_philos(t_table *table, t_philo *philo);
+void wait_some_philos(t_table *table, t_philo *philo);
 void lone_philo(t_table *table, t_philo *philo);
 
 // MONITOR

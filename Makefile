@@ -6,11 +6,11 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/08/29 07:42:38 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/29 11:41:14 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES				= main utils init input dinner get_and_set time thread mutex dinner_utils monitor
+FILES				= main utils init input dinner get_and_set time threads dinner_utils monitor
 
 BONUS_FILES			= 
 
