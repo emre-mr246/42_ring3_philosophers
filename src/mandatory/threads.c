@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread.c                                           :+:      :+:    :+:   */
+/*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:02:21 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 11:40:09 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 11:58:11 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void handle_thread_error(int status, t_operation operation)
 	if (status == 0)
 		return ;
 	if (status == EAGAIN)
-		ft_putendl_fd("Error: No resources to create a new thread.\n", 2);
+		ft_putendl_fd("Error: No resources for a new thread.\n", 2);
 	else if (status == ENOMEM)
-		ft_putendl_fd("Error: Insufficient memory to create or manage a thread.\n", 2);
+		ft_putendl_fd("Error: Insufficient memory to manage a thread.\n", 2);
 	else if (status == EPERM)
 		ft_putendl_fd("Error: Insufficient permissions to create a thread.\n", 2);
 	else if (status == EBUSY)
-		ft_putendl_fd("Error: The mutex or resource is already locked or busy.\n", 2);
+		ft_putendl_fd("Error: The mutex or resource is already busy.\n", 2);
 	else if (status == ETIMEDOUT)
 		ft_putendl_fd("Error: Thread operation timed out.\n", 2);
 	else if (status == EINVAL && operation == CREATE)
@@ -35,9 +35,9 @@ static void handle_thread_error(int status, t_operation operation)
 	else if (status == ESRCH)
 		ft_putendl_fd("Error: No thread found with the specified ID.\n", 2);
 	else if (status == EINTR)
-		ft_putendl_fd("Error: Thread operation was interrupted by a signal.\n", 2);
+		ft_putendl_fd("Error: Operation was interrupted by a signal.\n", 2);
 	else if (status == EDEADLK)
-		ft_putendl_fd("Error: Deadlock detected or thread is the calling thread.\n", 2);
+		ft_putendl_fd("Error: Deadlock detected.\n", 2);
 	else
 		ft_putendl_fd("Error: An unknown thread error occurred.\n", 2);
 }
@@ -77,7 +77,7 @@ static void	handle_mutex_error(int status, t_operation operation)
 			ft_putendl_fd("Error: Invalid mutex value.", 2);
 	}
 	else if (status == EAGAIN)
-		ft_putendl_fd("Error: System resources temporarily unavailable for mutex operation.", 2);
+		ft_putendl_fd("Error: Resources temporarily unavailable for mutex.", 2);
 	else if (status == EINVAL)
 		ft_putendl_fd("Error: Invalid argument passed to mutex function.", 2);
 	else

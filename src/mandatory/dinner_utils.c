@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 11:45:50 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/29 11:53:51 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void print_status(t_philo_status status, t_table *table, t_philo *philo)
 {
 	long elapsed_time;
-	char *tmp;
 
 	if (get_bool(&philo->philo_mutex, &philo->is_full))
 		return ;
@@ -25,21 +24,17 @@ void print_status(t_philo_status status, t_table *table, t_philo *philo)
 	if (!get_bool(&table->table_mutex, &table->dinner_over))
 	{
 		elapsed_time = (get_time_milisec() - table->start_time);
-		tmp = ft_itoa(elapsed_time);
-		write(1, tmp, ft_strlen(tmp));
-		write(1, " ", 1);
-		tmp = ft_itoa(philo->id);
-		write(1, tmp, ft_strlen(tmp));
+		ft_printf("%d	%i ", elapsed_time, philo->id);
 		if (status == TAKE_FIRST_FORK || status == TAKE_SECOND_FORK)
-			write(1, " has taken a fork\n", 18);
+			write(1, "has taken a fork\n", 18);
 		else if (status == EATING)
-			write(1, " is eating\n", 11);
+			write(1, "is eating\n", 11);
 		else if (status == SLEEPING)
-			write(1, " is sleeping\n", 13);
+			write(1, "is sleeping\n", 13);
 		else if (status == THINKING)
-			write(1, " is thinking\n", 13);
+			write(1, "is thinking\n", 13);
 		else if (status == DIED)
-			write(1, " died\n", 6);
+			write(1, "died\n", 6);
 	}
 	handle_mutex(&table->print_mutex, UNLOCK);
 }
