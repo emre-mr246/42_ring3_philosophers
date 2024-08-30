@@ -6,19 +6,16 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/08/29 15:27:02 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/30 06:23:10 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES				= main utils init input dinner get_and_set time threads dinner_utils monitor
 
-BONUS_FILES			= 
-
 NAME				= philo
-BONUS_NAME			= philo_bonus
 
 CC					= gcc
-CCFLAGS				= -O3 #-Wall -Wextra -Werror
+CCFLAGS				= -O3 -march=native -Wall -Wextra -Werror
 MAKEFLAGS			= --no-print-directory
 RM					= rm -rf
 
@@ -26,28 +23,18 @@ LIBFT_PATH			= lib/libft/
 LIBFT				= $(LIBFT_PATH)libft.a
 
 FILES_PATH			= src/mandatory/
-BONUS_FILES_PATH	= src/bonus/
 OBJ_DIR				= .obj/
 
 SRCS				= $(addprefix $(FILES_PATH), $(addsuffix .c, $(FILES)))
-BONUS_SRCS			= $(addprefix $(BONUS_FILES_PATH), $(addsuffix _bonus.c, $(BONUS_FILES)))
-
 OBJS				= $(addprefix $(OBJ_DIR), $(notdir $(SRCS:.c=.o)))
-BONUS_OBJS			= $(addprefix $(OBJ_DIR), $(notdir $(BONUS_SRCS:.c=.o)))
 
 vpath %.c $(FILES_PATH) $(BONUS_FILES_PATH)
 
 all: $(NAME)
 
-bonus: $(BONUS_NAME)
-
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(CCFLAGS) -o $(NAME)
 	@echo "$(GREEN)-== $(NAME) created! ==-$(DEFAULT)"
-
-$(BONUS_NAME): $(LIBFT) $(OBJ_DIR) $(BONUS_OBJS)
-	@$(CC) $(BONUS_OBJS) $(LIBFT) $(CCFLAGS) -o $(BONUS_NAME)
-	@echo "$(GREEN)-== $(BONUS_NAME) created! ==-$(DEFAULT)"
 
 $(OBJ_DIR)%.o: %.c
 	@$(CC) $(CCFLAGS) -c -o $@ $<
@@ -63,12 +50,10 @@ check-norm: all
 	
 clean:
 	@$(RM) $(OBJS)
-	@$(RM) $(BONUS_OBJS)
 	@echo "$(YELLOW)-== all object files deleted! ==-$(DEFAULT)"
 
 fclean: clean libclean
 	@$(RM) $(NAME)
-	@$(RM) $(BONUS_NAME)
 	@$(RM) $(OBJ_DIR)
 	@echo "$(RED)-== all files deleted! ==-$(DEFAULT)"
 
@@ -78,9 +63,7 @@ libclean:
 
 re: fclean all
 
-re-bonus: fclean bonus
-
-.PHONY: all bonus clean fclean libclean re re-bonus check-norm
+.PHONY: all bonus clean fclean libclean re check-norm
 
 # ANSI COLOR CODES
 DEFAULT = \033[0m

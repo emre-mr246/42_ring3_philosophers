@@ -6,7 +6,7 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/07 09:44:14 by emgul             #+#    #+#              #
-#    Updated: 2024/07/31 10:39:08 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/30 06:20:02 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME				= libft.a
 BONUS_NAME			= libft_bonus.a
 
 CC					= gcc
-CCFLAGS				= -Wall -Wextra -Werror
+CCFLAGS				= -O3 -march=native -Wall -Wextra -Werror
 MAKEFLAGS			= --no-print-directory
 AR					= ar rcs
 RM					= rm -rf

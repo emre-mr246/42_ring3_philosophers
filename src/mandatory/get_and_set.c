@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 21:17:59 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 15:16:06 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 06:13:42 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
 	handle_mutex(mutex, UNLOCK);
 }
 
-long	set_long(pthread_mutex_t *mutex, long *dest, long value)
+void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 {
 	handle_mutex(mutex, LOCK);
 	*dest = value;

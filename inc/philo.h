@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 04:06:37 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 06:14:25 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ bool					get_bool(pthread_mutex_t *mutex, bool *value);
 long					get_long(pthread_mutex_t *mutex, long *value);
 void					set_bool(pthread_mutex_t *mutex, bool *dest,
 							bool value);
-long					set_long(pthread_mutex_t *mutex, long *dest,
+void					set_long(pthread_mutex_t *mutex, long *dest,
 							long value);
 void					increase_long(pthread_mutex_t *mutex, long *value);
 

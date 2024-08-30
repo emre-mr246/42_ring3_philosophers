@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 04:05:13 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 06:15:13 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ void	lone_philo(t_table *table, t_philo *philo)
 void	wait_some_philos(t_table *table, t_philo *philo)
 {
 	if (table->philo_count % 2 == 0)
+	{
 		if (philo->id % 2 == 0)
 			usleep_lossless(50000, table);
 		else if (philo->id % 2)
 			thinking(table, philo, false);
+	}
 }
