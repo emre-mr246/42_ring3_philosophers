@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 11:57:45 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:02:37 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ int	dinner(t_table *table)
 		i++;
 	}
 	table->start_time = get_time_ms();
-	set_bool(&table->table_mutex, &table->all_threads_ready, true);
 	handle_thread(&table->camera, watch_dinner, table, CREATE);
+	set_bool(&table->table_mutex, &table->all_threads_ready, true);
 	i = 0;
 	while (i < table->philo_count)
 	{

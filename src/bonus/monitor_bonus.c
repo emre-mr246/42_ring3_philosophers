@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:33:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 11:56:25 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 12:41:51 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*watch_dinner(void *data)
 	while (!all_threads_running(table->table_sem,
 			&table->running_threads_count, table->philo_count))
 		continue ;
-	usleep_lossless(50000, table);
+	usleep_lossless(10000, table);
 	while (!get_bool(table->table_sem, &table->dinner_over))
 	{
 		i = 0;

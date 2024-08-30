@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 12:21:25 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 12:24:13 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	init_table(t_table **table)
 	tmp->philo_count = 0;
 	tmp->running_threads_count = 0;
 	tmp->start_time = 0;
+	handle_mutex(&tmp->print_mutex, INIT);
+	handle_mutex(&tmp->table_mutex, INIT);
 	*table = tmp;
 	return (0);
 }
