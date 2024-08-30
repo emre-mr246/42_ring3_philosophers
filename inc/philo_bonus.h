@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:37:53 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 14:06:11 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void					print_status(t_philo_status status, t_table *table,
 void					wait_some_philos(t_table *table, t_philo *philo);
 void					lone_philo(t_table *table, t_philo *philo);
 int						take_two_forks(t_table *table, t_philo *philo);
-void					drop_two_fork(t_table *table);
+void					put_down_forks(t_table *table);
 
 // MONITOR
 void					*watch_dinner(void *data);

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:19:45 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 14:06:10 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	take_two_forks(t_table *table, t_philo *philo)
 	return (-1);
 }
 
-void	drop_two_fork(t_table *table)
+void	put_down_forks(t_table *table)
 {
 	sem_post(table->forks);
 	sem_post(table->forks);

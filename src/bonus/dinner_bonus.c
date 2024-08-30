@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:18:17 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 14:06:10 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	eating(t_table *table, t_philo *philo)
 		set_bool(philo->philo_sem, &philo->is_full, true);
 		increase_long(table->table_sem, &table->full_philo_count);
 	}
-	drop_two_fork(table);
+	put_down_forks(table);
 }
 
 static void	sleeping(t_table *table, t_philo *philo)
