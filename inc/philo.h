@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 11:55:32 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 04:06:37 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void					increase_long(pthread_mutex_t *mutex, long *value);
 
 // TIME
 void					usleep_lossless(long usec, t_table *table);
-long					get_time_milisec(void);
+long					get_time_ms(void);
 
 // THREADS
 void					handle_thread(pthread_t *thread, void *(*func)(void *),

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:33:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 15:15:58 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 04:05:13 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool	philo_died(t_table *table, t_philo *philo)
 
 	if (get_bool(&philo->philo_mutex, &philo->is_full))
 		return (false);
-	elapsed_time = get_time_milisec() - get_long(&philo->philo_mutex,
+	elapsed_time = get_time_ms() - get_long(&philo->philo_mutex,
 			&philo->last_meal_time);
 	if (elapsed_time > table->time_to_die)
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 15:16:08 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 04:22:11 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ static void	eating(t_table *table, t_philo *philo)
 	print_status(TAKE_FIRST_FORK, table, philo);
 	handle_mutex(&philo->right_fork->mutex, LOCK);
 	print_status(TAKE_SECOND_FORK, table, philo);
-	set_long(&philo->philo_mutex, &philo->last_meal_time, get_time_milisec());
+	set_long(&philo->philo_mutex, &philo->last_meal_time, get_time_ms());
 	print_status(EATING, table, philo);
 	increase_long(&philo->philo_mutex, &philo->meals_counter);
+	usleep_lossless(table->time_to_eat, table);
 	if (!get_bool(&philo->philo_mutex, &philo->is_full)
-		&& table->max_meal_per_philo > 0 && get_long(&philo->philo_mutex,
+		&& get_long(&philo->philo_mutex,
 			&philo->meals_counter) == table->max_meal_per_philo)
 	{
 		set_bool(&philo->philo_mutex, &philo->is_full, true);
 		increase_long(&table->table_mutex, &table->full_philo_count);
 	}
-	usleep_lossless(table->time_to_eat, table);
 	handle_mutex(&philo->left_fork->mutex, UNLOCK);
 	handle_mutex(&philo->right_fork->mutex, UNLOCK);
 }
@@ -61,13 +61,13 @@ static void	*start_dinner(void *data)
 
 	philo = (t_philo *)data;
 	table = philo->table;
+	while (!get_bool(&table->table_mutex, &table->all_threads_ready))
+		continue ;
 	if (table->philo_count == 1)
 	{
 		lone_philo(table, philo);
 		return (NULL);
 	}
-	while (!get_bool(&table->table_mutex, &table->all_threads_ready))
-		continue ;
 	increase_long(&table->table_mutex, &table->running_threads_count);
 	set_long(&philo->philo_mutex, &philo->last_meal_time, table->start_time);
 	wait_some_philos(table, philo);
@@ -93,7 +93,7 @@ int	dinner(t_table *table)
 			table->philos[i], CREATE);
 		i++;
 	}
-	table->start_time = get_time_milisec();
+	table->start_time = get_time_ms();
 	handle_thread(&table->camera, watch_dinner, table, CREATE);
 	set_bool(&table->table_mutex, &table->all_threads_ready, true);
 	i = 0;

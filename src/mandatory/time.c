@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:00:08 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 15:15:52 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 04:05:13 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-long	get_time_milisec(void)
+long	get_time_ms(void)
 {
 	struct timeval	tv;
 
