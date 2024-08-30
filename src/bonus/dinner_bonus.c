@@ -6,34 +6,11 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 12:58:09 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:18:17 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo_bonus.h"
-
-int take_two_forks(t_table *table, t_philo *philo)
-{
-	sem_wait(table->second_fork_sem);
-	if (sem_wait(table->forks) == 0)
-	{
-		print_status(TAKE_A_FORK, table, philo);
-		if (sem_wait(table->forks) == 0)
-		{
-			sem_post(table->second_fork_sem);
-			print_status(TAKE_A_FORK, table, philo);
-			return (0);
-		}
-		sem_post(table->forks);
-	}
-	return (-1);
-}
-
-void drop_two_fork(t_table *table)
-{
-	sem_post(table->forks);
-	sem_post(table->forks);
-}
 
 static void	eating(t_table *table, t_philo *philo)
 {

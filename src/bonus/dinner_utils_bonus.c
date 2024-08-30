@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 11:31:01 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:19:45 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,27 @@ void	wait_some_philos(t_table *table, t_philo *philo)
 		else if (philo->id % 2)
 			thinking(table, philo, false);
 	}
+}
+
+int	take_two_forks(t_table *table, t_philo *philo)
+{
+	sem_wait(table->wait_for_second_sem);
+	if (sem_wait(table->forks) == 0)
+	{
+		print_status(TAKE_A_FORK, table, philo);
+		if (sem_wait(table->forks) == 0)
+		{
+			sem_post(table->wait_for_second_sem);
+			print_status(TAKE_A_FORK, table, philo);
+			return (0);
+		}
+		sem_post(table->forks);
+	}
+	return (-1);
+}
+
+void	drop_two_fork(t_table *table)
+{
+	sem_post(table->forks);
+	sem_post(table->forks);
 }

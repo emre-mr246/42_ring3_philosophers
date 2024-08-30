@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 10:38:34 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:38:36 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void	clean(t_table *table)
 		free(table->philos[i]);
 		i++;
 	}
-	handle_sem(table->forks, DESTROY);
 	free(table->philos);
+	handle_sem(table->forks, DESTROY);
 	handle_sem(table->print_sem, DESTROY);
 	handle_sem(table->table_sem, DESTROY);
+	handle_sem(table->wait_for_second_sem, DESTROY);
 }

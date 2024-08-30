@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 12:20:28 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:19:27 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	init_table(t_table **table)
 	tmp->max_meal_per_philo = 0;
 	tmp->philo_count = 0;
 	tmp->running_threads_count = 0;
-	tmp->second_fork_sem = 0;
+	tmp->wait_for_second_sem = 0;
 	tmp->start_time = 0;
 	*table = tmp;
 	return (0);

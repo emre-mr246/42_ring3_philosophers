@@ -6,22 +6,22 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:33:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 12:41:51 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:20:15 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo_bonus.h"
 
-static bool	all_threads_running(sem_t *mutex, long *threads,
+static bool	all_threads_running(sem_t *sem, long *threads,
 		long philo_count)
 {
 	bool	ret;
 
 	ret = false;
-	handle_sem(mutex, LOCK);
+	handle_sem(sem, LOCK);
 	if (*threads == philo_count)
 		ret = true;
-	handle_sem(mutex, UNLOCK);
+	handle_sem(sem, UNLOCK);
 	return (ret);
 }
 

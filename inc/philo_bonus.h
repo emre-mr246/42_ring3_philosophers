@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 12:11:42 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:37:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define PHILO_H
 
 # include <pthread.h>
-#include <semaphore.h>
+# include <semaphore.h>
 # include <stdbool.h>
-
-#include <stdio.h>// KALDIRILACAK
 
 typedef struct s_table	t_table;
 
@@ -28,8 +26,7 @@ typedef enum e_operation
 	INIT,
 	DESTROY,
 	CREATE,
-	JOIN,
-	DETACH
+	JOIN
 }						t_operation;
 
 typedef enum e_philo_status
@@ -56,10 +53,10 @@ typedef struct s_table
 {
 	t_philo				**philos;
 	sem_t				*forks;
+	sem_t				*table_sem;
+	sem_t				*print_sem;
+	sem_t				*wait_for_second_sem;
 	pthread_t			camera;
-	sem_t		*table_sem;
-	sem_t		*print_sem;
-	sem_t		*second_fork_sem;
 	long				philo_count;
 	long				time_to_die;
 	long				time_to_eat;
@@ -90,10 +87,8 @@ int						init_forks(t_table *table);
 // GET AND SET
 bool					get_bool(sem_t *sem, bool *value);
 long					get_long(sem_t *sem, long *value);
-void					set_bool(sem_t *sem, bool *dest,
-							bool value);
-void					set_long(sem_t *sem, long *dest,
-							long value);
+void					set_bool(sem_t *sem, bool *dest, bool value);
+void					set_long(sem_t *sem, long *dest, long value);
 void					increase_long(sem_t *sem, long *value);
 
 // TIME
@@ -103,9 +98,8 @@ long					get_time_ms(void);
 // THREADS
 void					handle_thread(pthread_t *thread, void *(*func)(void *),
 							void *data, t_operation opcode);
-void					handle_sem(sem_t *sem,
-							t_operation opcode);
-sem_t *create_sem(char *name, int value);
+void					handle_sem(sem_t *sem, t_operation opcode);
+sem_t					*create_sem(char *name, int value);
 
 // DINNER
 int						dinner(t_table *table);
@@ -117,6 +111,8 @@ void					print_status(t_philo_status status, t_table *table,
 							t_philo *philo);
 void					wait_some_philos(t_table *table, t_philo *philo);
 void					lone_philo(t_table *table, t_philo *philo);
+int						take_two_forks(t_table *table, t_philo *philo);
+void					drop_two_fork(t_table *table);
 
 // MONITOR
 void					*watch_dinner(void *data);

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:02:21 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 10:28:51 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:36:18 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void	handle_thread_error(int status, t_operation operation)
 		ft_putendl_fd("Error: Thread operation timed out.\n", 2);
 	else if (status == EINVAL && operation == CREATE)
 		ft_putendl_fd("Error: Invalid attributes for thread creation.\n", 2);
-	else if (status == EINVAL && (operation == JOIN || operation == DETACH))
-		ft_putendl_fd("Error: Thread is not joinable or detachable.\n", 2);
+	else if (status == EINVAL && operation == JOIN)
+		ft_putendl_fd("Error: Thread is not joinable.\n", 2);
 	else if (status == ESRCH)
 		ft_putendl_fd("Error: No thread found with the specified ID.\n", 2);
 	else if (status == EINTR)
@@ -53,46 +53,41 @@ void	handle_thread(pthread_t *thread, void *(*func)(void *), void *data,
 		status = pthread_create(thread, NULL, func, data);
 	else if (operation == JOIN)
 		status = pthread_join(*thread, NULL);
-	else if (operation == DETACH)
-		status = pthread_detach(*thread);
 	else
 		status = 0;
 	handle_thread_error(status, operation);
 }
 
-static void	handle_mutex_error(int status, t_operation operation)
+static void	handle_semaphore_error(int status)
 {
 	if (status == 0)
 		return ;
-	if (status == EBUSY)
-		ft_putendl_fd("Error: Mutex is already locked.", 2);
+	if (status == EAGAIN)
+		ft_putendl_fd("Error: No resources to lock the semaphore.\n", 2);
 	else if (status == ENOMEM)
-		ft_putendl_fd("Error: Not enough memory to create mutex.", 2);
+		ft_putendl_fd("Error: Insufficient memory.\n", 2);
 	else if (status == EPERM)
-		ft_putendl_fd("Error: No permission. Mutex is not locked by this thread.",
-			2);
+		ft_putendl_fd("Error: Insufficient permissions.\n", 2);
+	else if (status == EBUSY)
+		ft_putendl_fd("Error: Semaphore is already locked.\n", 2);
+	else if (status == ETIMEDOUT)
+		ft_putendl_fd("Error: Semaphore operation timed out.\n", 2);
+	else if (status == EINVAL)
+		ft_putendl_fd("Error: Semaphore is not valid or uninitialized.\n", 2);
+	else if (status == ESRCH)
+		ft_putendl_fd("Error: Semaphore not found.\n", 2);
+	else if (status == EINTR)
+		ft_putendl_fd("Error: Semaphore was interrupted by a signal.\n", 2);
 	else if (status == EDEADLK)
-		ft_putendl_fd("Error: Deadlock detected. Thread cannot proceed.", 2);
-	else if (status == EINVAL)
-	{
-		if (operation == INIT)
-			ft_putendl_fd("Error: Invalid initialization attribute for mutex.",
-				2);
-		else
-			ft_putendl_fd("Error: Invalid mutex value.", 2);
-	}
-	else if (status == EAGAIN)
-		ft_putendl_fd("Error: Resources temporarily unavailable for mutex.", 2);
-	else if (status == EINVAL)
-		ft_putendl_fd("Error: Invalid argument passed to mutex function.", 2);
+		ft_putendl_fd("Error: Deadlock detected for a semaphore.\n", 2);
 	else
-		ft_putendl_fd("Error: Unknown error code.", 2);
+		ft_putendl_fd("Error: An unknown semaphore error occurred.\n", 2);
 }
 
-sem_t *create_sem(char *name, int value)
+sem_t	*create_sem(char *name, int value)
 {
-	sem_t *sem;
-	
+	sem_t	*sem;
+
 	sem_unlink(name);
 	sem = sem_open(name, O_CREAT, 0644, value);
 	return (sem);
@@ -113,5 +108,5 @@ void	handle_sem(sem_t *sem, t_operation operation)
 		ft_putendl_fd("Invalid operation code", 2);
 		return ;
 	}
-	handle_mutex_error(status, operation);
+	handle_semaphore_error(status);
 }

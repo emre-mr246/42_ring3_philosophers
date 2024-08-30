@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 11:12:58 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:19:27 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	}
 	init_philos(table);
 	table->forks = create_sem("forks_sem", table->philo_count);
-	table->second_fork_sem = create_sem("second_fork_sem", 1);
+	table->wait_for_second_sem = create_sem("second_fork_sem", 1);
 	dinner(table);
 	clean(table);
 	return (0);

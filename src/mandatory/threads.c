@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:02:21 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/29 15:15:54 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:36:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	handle_thread_error(int status, t_operation operation)
 		ft_putendl_fd("Error: Thread operation timed out.\n", 2);
 	else if (status == EINVAL && operation == CREATE)
 		ft_putendl_fd("Error: Invalid attributes for thread creation.\n", 2);
-	else if (status == EINVAL && (operation == JOIN || operation == DETACH))
-		ft_putendl_fd("Error: Thread is not joinable or detachable.\n", 2);
+	else if (status == EINVAL && operation == JOIN)
+		ft_putendl_fd("Error: Thread is not joinable.\n", 2);
 	else if (status == ESRCH)
 		ft_putendl_fd("Error: No thread found with the specified ID.\n", 2);
 	else if (status == EINTR)
@@ -52,8 +52,6 @@ void	handle_thread(pthread_t *thread, void *(*func)(void *), void *data,
 		status = pthread_create(thread, NULL, func, data);
 	else if (operation == JOIN)
 		status = pthread_join(*thread, NULL);
-	else if (operation == DETACH)
-		status = pthread_detach(*thread);
 	else
 		status = 0;
 	handle_thread_error(status, operation);

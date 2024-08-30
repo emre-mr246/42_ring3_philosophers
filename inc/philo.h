@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 06:14:25 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:36:28 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef enum e_operation
 	INIT,
 	DESTROY,
 	CREATE,
-	JOIN,
-	DETACH
+	JOIN
 }						t_operation;
 
 typedef enum e_philo_status
