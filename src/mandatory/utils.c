@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:47:19 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 00:47:52 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	err_arg(void)
 		2);
 	ft_putendl_fd("Time it takes for a philosopher to eat: 200 ms", 2);
 	ft_putendl_fd("Time it takes for a philosopher to sleep: 200 ms", 2);
-	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7",
+	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7 (optional)",
 		2);
 }
 
@@ -70,7 +70,7 @@ void	clean(t_table *table)
 	int	i;
 
 	i = 0;
-	while (i < table->philo_count)
+	while (table->philos && i < table->philo_count)
 	{
 		handle_mutex(&table->philos[i]->philo_mutex, DESTROY);
 		if (table->forks[i])

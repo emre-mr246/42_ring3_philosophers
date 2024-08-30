@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:59:26 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 00:48:56 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	err_arg(void)
 		2);
 	ft_putendl_fd("Time it takes for a philosopher to eat: 200 ms", 2);
 	ft_putendl_fd("Time it takes for a philosopher to sleep: 200 ms", 2);
-	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7",
+	ft_putendl_fd("Number of times each philosopher needs to eat before the program terminates: 7 (optional)",
 		2);
 }
 
@@ -70,19 +70,24 @@ void	clean(t_table *table)
 	int	i;
 
 	i = 0;
-	while (i < table->philo_count)
+	while (table->philos && i < table->philo_count)
 	{
-		handle_sem(table->philos[i]->philo_sem, DESTROY);
 		if (table->philos[i])
 			free(table->philos[i]);
+		if (table->philos[i]->philo_sem)
+			handle_sem(table->philos[i]->philo_sem, DESTROY);
 		i++;
 	}
 	if (table->philos)
 		free(table->philos);
-	handle_sem(table->forks, DESTROY);
-	handle_sem(table->table_sem, DESTROY);
-	handle_sem(table->print_sem, DESTROY);
-	handle_sem(table->wait_for_second_sem, DESTROY);
+	if (table->forks)
+		handle_sem(table->forks, DESTROY);
+	if (table->table_sem)
+		handle_sem(table->table_sem, DESTROY);
+	if (table->print_sem)
+		handle_sem(table->print_sem, DESTROY);
+	if (table->second_fork_sem)
+		handle_sem(table->second_fork_sem, DESTROY);
 	if (table)
 		free(table);
 }

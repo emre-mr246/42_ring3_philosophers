@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 14:06:10 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 00:48:56 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,15 @@ void	lone_philo(t_table *table, t_philo *philo)
 	print_status(TAKE_A_FORK, table, philo);
 }
 
-void	wait_some_philos(t_table *table, t_philo *philo)
-{
-	if (table->philo_count % 2 == 0)
-	{
-		if (philo->id % 2 == 0)
-			usleep_lossless(50000, table);
-		else if (philo->id % 2)
-			thinking(table, philo, false);
-	}
-}
-
 int	take_two_forks(t_table *table, t_philo *philo)
 {
-	sem_wait(table->wait_for_second_sem);
+	sem_wait(table->second_fork_sem);
 	if (sem_wait(table->forks) == 0)
 	{
 		print_status(TAKE_A_FORK, table, philo);
 		if (sem_wait(table->forks) == 0)
 		{
-			sem_post(table->wait_for_second_sem);
+			sem_post(table->second_fork_sem);
 			print_status(TAKE_A_FORK, table, philo);
 			return (0);
 		}

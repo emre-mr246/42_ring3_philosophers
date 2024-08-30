@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 14:06:11 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 00:48:56 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_table
 	sem_t				*forks;
 	sem_t				*table_sem;
 	sem_t				*print_sem;
-	sem_t				*wait_for_second_sem;
+	sem_t				*second_fork_sem;
 	pthread_t			camera;
 	long				philo_count;
 	long				time_to_die;
@@ -103,13 +103,10 @@ sem_t					*create_sem(char *name, int value);
 
 // DINNER
 int						dinner(t_table *table);
-void					thinking(t_table *table, t_philo *philo,
-							bool dinner_started);
 
 // DINNER UTILS
 void					print_status(t_philo_status status, t_table *table,
 							t_philo *philo);
-void					wait_some_philos(t_table *table, t_philo *philo);
 void					lone_philo(t_table *table, t_philo *philo);
 int						take_two_forks(t_table *table, t_philo *philo);
 void					put_down_forks(t_table *table);
