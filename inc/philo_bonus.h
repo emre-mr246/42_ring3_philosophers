@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 11:10:03 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 12:11:42 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_table
 	long				start_time;
 	long				running_threads_count;
 	long				full_philo_count;
+	long				ate_philo_count;
 	bool				dinner_over;
 	bool				all_threads_ready;
 }						t_table;
