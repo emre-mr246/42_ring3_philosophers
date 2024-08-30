@@ -18,7 +18,7 @@
 
 ## Introduction 🚀
 
-The 42 Philosophers project is a simulation of the classic Dining Philosophers problem, which illustrates the challenges of concurrency, synchronization, and resource sharing in a multithreaded environment. The project involves a set number of philosophers who alternately think and eat, but to eat, they need access to limited resources (forks). The goal is to manage these resources and avoid deadlocks or race conditions while ensuring that no philosopher starves. This project tests skills in multithreading and mutexes.
+The 42 Philosophers project is a simulation of the classic Dining Philosophers problem, which illustrates the challenges of concurrency, synchronization, and resource sharing in a multithreaded environment. The project involves a set number of philosophers who alternately think and eat, but to eat, they need access to limited resources (forks). The goal is to manage these resources and avoid deadlocks or race conditions while ensuring that no philosopher starves. This project tests skills in multithreading, mutexes and semaphores.
 
 ## Usage 🔍
 
