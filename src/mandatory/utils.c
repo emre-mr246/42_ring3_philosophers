@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:40:32 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 13:47:19 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,18 @@ void	clean(t_table *table)
 	while (i < table->philo_count)
 	{
 		handle_mutex(&table->philos[i]->philo_mutex, DESTROY);
-		free(table->forks[i]);
-		free(table->philos[i]);
+		if (table->forks[i])
+			free(table->forks[i]);
+		if (table->philos[i])
+			free(table->philos[i]);
 		i++;
 	}
-	free(table->philos);
-	free(table->forks);
+	if (table->philos)
+		free(table->philos);
+	if (table->forks)
+		free(table->forks);
 	handle_mutex(&table->table_mutex, DESTROY);
 	handle_mutex(&table->print_mutex, DESTROY);
+	if (table)
+		free(table);
 }

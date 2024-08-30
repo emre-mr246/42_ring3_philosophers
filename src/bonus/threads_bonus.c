@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:02:21 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:36:18 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/30 14:03:03 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	handle_sem(sem_t *sem, t_operation operation)
 	else if (operation == UNLOCK)
 		status = sem_post(sem);
 	else if (operation == DESTROY)
-		status = sem_destroy(sem);
+		status = sem_close(sem);
 	else
 	{
 		ft_putendl_fd("Invalid operation code", 2);
