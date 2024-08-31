@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dinner.c                                           :+:      :+:    :+:   */
+/*   philosophers.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/31 05:05:41 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 07:14:56 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	thinking(t_table *table, t_philo *philo, bool dinner_started)
 	}
 }
 
-static void	*start_dinner(void *data)
+static void	*start_routine(void *data)
 {
 	t_table	*table;
 	t_philo	*philo;
@@ -83,19 +83,19 @@ static void	*start_dinner(void *data)
 	return (NULL);
 }
 
-int	dinner(t_table *table)
+int	philosophers(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	while (i < table->philo_count)
 	{
-		handle_thread(&table->philos[i]->thread_id, start_dinner,
+		handle_thread(&table->philos[i]->thread_id, start_routine,
 			table->philos[i], CREATE);
 		i++;
 	}
 	table->start_time = get_time_ms();
-	handle_thread(&table->camera, watch_dinner, table, CREATE);
+	handle_thread(&table->camera, watch_routine, table, CREATE);
 	set_bool(&table->table_mutex, &table->all_threads_ready, true);
 	i = 0;
 	while (i < table->philo_count)

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/31 00:48:56 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 07:17:04 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void					handle_sem(sem_t *sem, t_operation opcode);
 sem_t					*create_sem(char *name, int value);
 
 // DINNER
-int						dinner(t_table *table);
+int						philosophers(t_table *table);
 
 // DINNER UTILS
 void					print_status(t_philo_status status, t_table *table,
@@ -112,6 +112,6 @@ int						take_two_forks(t_table *table, t_philo *philo);
 void					put_down_forks(t_table *table);
 
 // MONITOR
-void					*watch_dinner(void *data);
+void					*watch_routine(void *data);
 
 #endif

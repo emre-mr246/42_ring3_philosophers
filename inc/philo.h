@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 05:54:05 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:36:28 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 07:17:04 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void					handle_mutex(pthread_mutex_t *mutex,
 							t_operation opcode);
 
 // DINNER
-int						dinner(t_table *table);
+int						philosophers(t_table *table);
 void					thinking(t_table *table, t_philo *philo,
 							bool dinner_started);
 
@@ -121,6 +121,6 @@ void					wait_some_philos(t_table *table, t_philo *philo);
 void					lone_philo(t_table *table, t_philo *philo);
 
 // MONITOR
-void					*watch_dinner(void *data);
+void					*watch_routine(void *data);
 
 #endif

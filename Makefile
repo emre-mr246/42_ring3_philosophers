@@ -6,19 +6,17 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/08/31 04:18:01 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/31 07:16:15 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES				= main utils init input dinner get_and_set time threads dinner_utils monitor
-
-BONUS_FILES			= main utils init input dinner get_and_set time threads dinner_utils monitor
+FILES				= main utils init input dinner get_and_set time threads dinner_utils watch
 
 NAME				= philo
 BONUS_NAME			= philo_bonus
 
 CC					= gcc
-CCFLAGS				= -O3 #-Wall -Wextra -Werror
+CCFLAGS				= -O3 -Wall -Wextra -Werror
 MAKEFLAGS			= --no-print-directory
 RM					= rm -rf
 
@@ -30,7 +28,7 @@ BONUS_FILES_PATH	= src/bonus/
 OBJ_DIR				= .obj/
 
 SRCS				= $(addprefix $(FILES_PATH), $(addsuffix .c, $(FILES)))
-BONUS_SRCS			= $(addprefix $(BONUS_FILES_PATH), $(addsuffix _bonus.c, $(BONUS_FILES)))
+BONUS_SRCS			= $(addprefix $(BONUS_FILES_PATH), $(addsuffix _bonus.c, $(FILES)))
 
 OBJS				= $(addprefix $(OBJ_DIR), $(notdir $(SRCS:.c=.o)))
 BONUS_OBJS			= $(addprefix $(OBJ_DIR), $(notdir $(BONUS_SRCS:.c=.o)))

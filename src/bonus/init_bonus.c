@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/31 01:00:20 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 07:19:29 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	init_philos(t_table *table)
 			return (-1);
 		philo->id = i + 1;
 		philo->table = table;
-		philo->philo_sem = create_sem("philo_sem", 1);
+		philo->philo_sem = create_sem("/philo_sem", 1);
 		philos[i] = philo;
 		i++;
 	}
@@ -45,9 +45,9 @@ int	init_table(t_table **table)
 	tmp = (t_table *)ft_calloc(sizeof(t_table), 1);
 	if (!tmp)
 		return (-1);
-	tmp->table_sem = create_sem("table_sem", 1);
-	tmp->print_sem = create_sem("print_sem", 1);
-	tmp->second_fork_sem = create_sem("second_fork_sem", 1);
+	tmp->table_sem = create_sem("/table_sem", 1);
+	tmp->print_sem = create_sem("/print_sem", 1);
+	tmp->second_fork_sem = create_sem("/wait_second_fork_sem", 1);
 	tmp->dinner_over = false;
 	tmp->all_threads_ready = false;
 	tmp->philos = NULL;
