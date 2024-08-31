@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:00:08 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 04:05:13 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 07:29:31 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	usleep_lossless(long usec, t_table *table)
 	gettimeofday(&start, NULL);
 	while (elapsed < usec)
 	{
+		gettimeofday(&current, NULL);
 		if (get_bool(&table->table_mutex, &table->dinner_over))
 			break ;
-		gettimeofday(&current, NULL);
 		elapsed = get_elapsed_usec(start, current);
 		remaining = usec - elapsed;
 		if (remaining > 1000)
