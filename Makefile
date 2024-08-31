@@ -6,7 +6,7 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/08/30 13:54:59 by emgul            ###   ########.fr        #
+#    Updated: 2024/08/31 04:18:01 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME				= philo
 BONUS_NAME			= philo_bonus
 
 CC					= gcc
-CCFLAGS				= -O3 -Wall -Wextra -Werror
+CCFLAGS				= -O3 #-Wall -Wextra -Werror
 MAKEFLAGS			= --no-print-directory
 RM					= rm -rf
 

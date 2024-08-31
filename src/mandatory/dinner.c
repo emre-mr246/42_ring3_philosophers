@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:47:06 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/30 13:02:37 by emgul            ###   ########.fr       */
+/*   Updated: 2024/08/31 05:05:41 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ static void	sleeping(t_table *table, t_philo *philo)
 
 void	thinking(t_table *table, t_philo *philo, bool dinner_started)
 {
-	long	t_think;
+	long	think_time;
 
 	if (dinner_started)
 		print_status(THINKING, table, philo);
-	if (table->philo_count % 2 == 0)
-		return ;
-	t_think = (table->time_to_eat * 2) - table->time_to_sleep;
-	if (t_think > 0)
-		usleep_lossless((t_think * 50) / 100, table);
+	if (table->philo_count % 2 != 0)
+	{
+		think_time = (table->time_to_eat * 2) - table->time_to_sleep;
+		if (think_time > 0)
+			usleep_lossless((think_time * 50) / 100, table);
+	}
 }
 
 static void	*start_dinner(void *data)
