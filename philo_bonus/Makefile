@@ -6,13 +6,13 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/09/10 15:26:20 by emgul            ###   ########.fr        #
+#    Updated: 2024/09/10 15:48:04 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES				= main utils init input dinner get_and_set time threads dinner_utils watch clean
 
-BONUS_NAME			= philo_bonus
+NAME				= philo_bonus
 
 CC					= gcc
 CCFLAGS				= -Wall -Wextra -Werror #-fsanitize=thread 
@@ -27,11 +27,11 @@ BONUS_OBJS			= $(addprefix $(OBJ_DIR), $(notdir $(BONUS_SRCS:.c=.o)))
 
 vpath %.c $(BONUS_FILES_PATH)
 
-all: $(BONUS_NAME)
+all: $(NAME)
 
-$(BONUS_NAME): $(OBJ_DIR) $(BONUS_OBJS)
-	@$(CC) $(BONUS_OBJS) $(CCFLAGS) -o $(BONUS_NAME)
-	@echo "$(GREEN)-== $(BONUS_NAME) created! ==-$(DEFAULT)"
+$(NAME): $(OBJ_DIR) $(BONUS_OBJS)
+	@$(CC) $(BONUS_OBJS) $(CCFLAGS) -o $(NAME)
+	@echo "$(GREEN)-== $(NAME) created! ==-$(DEFAULT)"
 
 $(OBJ_DIR)%.o: %.c
 	@$(CC) $(CCFLAGS) -c -o $@ $<
@@ -44,7 +44,7 @@ clean:
 	@echo "$(YELLOW)-== all object files deleted! ==-$(DEFAULT)"
 
 fclean: clean
-	@$(RM) $(BONUS_NAME)
+	@$(RM) $(NAME)
 	@$(RM) $(OBJ_DIR)
 	@echo "$(RED)-== all files deleted! ==-$(DEFAULT)"
 

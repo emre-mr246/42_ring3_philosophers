@@ -30,15 +30,15 @@ I couldn't create the project tree because the subject requires all files to be 
 
 ## Mandatory Part(with mutexes) Usage 🔍
 
-1.  In the project's main directory, compile the library using the `make` command.
+1.  In the philo directory, compile the library using the `make` command.
    `$ make` 
     
 2.  After compilation, you can use the program as follows:
     `./philo <philo_count> <time_to_die> <time_to_eat> <time_to_sleep> <max_meal_count_per_philo>`
 
 ## Bonus Part(with semaphores) Usage 🔍
-1.  In the project's main directory, compile the library using the `make` command.
-   `$ make bonus` 
+1.  In the philo_bonus directory, compile the library using the `make` command.
+   `$ make` 
     
 2.  After compilation, you can use the program as follows:
     `./philo_bonus <philo_count> <time_to_die> <time_to_eat> <time_to_sleep> <max_meal_count_per_philo>`
