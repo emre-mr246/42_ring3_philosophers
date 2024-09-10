@@ -15,7 +15,7 @@ FILES				= main utils init input dinner get_and_set time threads dinner_utils wa
 BONUS_NAME			= philo_bonus
 
 CC					= gcc
-CCFLAGS				=  -fsanitize=thread -Wall -Wextra -Werror
+CCFLAGS				=  -Wall -Wextra -Werror #-fsanitize=thread 
 MAKEFLAGS			= --no-print-directory
 RM					= rm -rf
 

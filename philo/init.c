@@ -6,17 +6,35 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/31 01:01:28 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:05:51 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdlib.h>
 
+static t_philo	*create_philo(t_table *table, int i)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)malloc(sizeof(t_philo));
+	if (!philo)
+		return (NULL);
+	philo->id = i + 1;
+	philo->is_full = false;
+	philo->last_meal_time = 0;
+	philo->left_fork = NULL;
+	philo->meals_counter = 0;
+	philo->right_fork = NULL;
+	philo->thread_id = -1;
+	philo->table = table;
+	handle_mutex(&philo->philo_mutex, INIT);
+	return (philo);
+}
+
 int	init_philos(t_table *table)
 {
 	t_philo	**philos;
-	t_philo	*philo;
 	int		i;
 
 	philos = (t_philo **)malloc(sizeof(t_philo *) * table->philo_count);
@@ -25,19 +43,9 @@ int	init_philos(t_table *table)
 	i = 0;
 	while (i < table->philo_count)
 	{
-		philo = (t_philo *)malloc(sizeof(t_philo));
-		if (!philo)
+		philos[i] = create_philo(table, i);
+		if (!philos[i])
 			return (-1);
-		philo->id = i + 1;
-		philo->is_full = false;
-		philo->last_meal_time = 0;
-		philo->left_fork = NULL;
-		philo->meals_counter = 0;
-		philo->right_fork = NULL;
-		philo->thread_id = -1;
-		philo->table = table;
-		handle_mutex(&philo->philo_mutex, INIT);
-		philos[i] = philo;
 		i++;
 	}
 	table->philos = philos;

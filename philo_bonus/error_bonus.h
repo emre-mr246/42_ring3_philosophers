@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_bonus.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/10 15:07:48 by emgul             #+#    #+#             */
+/*   Updated: 2024/09/10 15:07:48 by emgul            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #define ERR_EPERM       "Operation not permitted"
 #define ERR_ENOENT      "No such file or directory"
 #define ERR_ESRCH       "No such process"
