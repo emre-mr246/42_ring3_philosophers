@@ -6,12 +6,11 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:06:17 by emgul             #+#    #+#             */
-/*   Updated: 2024/09/10 15:06:55 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:29:20 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 void	clean(t_table *table)

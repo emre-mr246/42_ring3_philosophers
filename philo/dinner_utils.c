@@ -6,12 +6,11 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 06:32:34 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/31 05:18:30 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:29:11 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <unistd.h>
 #include <stdio.h>
 
 void	print_status(t_philo_status status, t_table *table, t_philo *philo)

@@ -6,20 +6,23 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/09/10 15:19:04 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:27:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include "error.h"
 #include <unistd.h>
 
-void	err_arg(void)
+size_t	ft_strlen(const char *str)
 {
-	write(2, ERR_USAGE, ft_strlen(ERR_USAGE));
-	write(2, "\n", 1);
+	size_t	len;
+
+	if (!str)
+		return (0);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
 /*
@@ -70,14 +73,8 @@ int	ft_isdigit(char c)
 		return (0);
 }
 
-size_t	ft_strlen(const char *str)
+void	err_arg(void)
 {
-	size_t	len;
-
-	if (!str)
-		return (0);
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
+	write(2, ERR_USAGE, ft_strlen(ERR_USAGE));
+	write(2, "\n", 1);
 }

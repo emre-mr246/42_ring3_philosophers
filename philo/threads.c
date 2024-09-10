@@ -6,13 +6,13 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 22:02:21 by emgul             #+#    #+#             */
-/*   Updated: 2024/09/10 15:22:26 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:28:40 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <errno.h>
 #include "error.h"
+#include <errno.h>
 #include <unistd.h>
 
 static void	handle_error(int status)

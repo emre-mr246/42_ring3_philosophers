@@ -6,13 +6,12 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:00:07 by emgul             #+#    #+#             */
-/*   Updated: 2024/09/10 15:00:11 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:31:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-#include "stdlib.h"
-#include "error_bonus.h"
+#include <stdlib.h>
 
 void	clean(t_table *table)
 {

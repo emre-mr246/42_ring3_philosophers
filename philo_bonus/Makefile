@@ -6,7 +6,7 @@
 #    By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/11 07:09:36 by emgul             #+#    #+#              #
-#    Updated: 2024/09/10 15:22:14 by emgul            ###   ########.fr        #
+#    Updated: 2024/09/10 15:26:20 by emgul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FILES				= main utils init input dinner get_and_set time threads dinner_utils wa
 BONUS_NAME			= philo_bonus
 
 CC					= gcc
-CCFLAGS				=  -Wall -Wextra -Werror #-fsanitize=thread 
+CCFLAGS				= -Wall -Wextra -Werror #-fsanitize=thread 
 MAKEFLAGS			= --no-print-directory
 RM					= rm -rf
 
@@ -50,7 +50,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
 
 # ANSI COLOR CODES
 DEFAULT = \033[0m

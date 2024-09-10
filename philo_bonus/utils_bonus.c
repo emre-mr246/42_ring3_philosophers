@@ -6,12 +6,11 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 07:51:53 by emgul             #+#    #+#             */
-/*   Updated: 2024/09/10 15:19:23 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:29:37 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-#include "stdlib.h"
 #include "error_bonus.h"
 #include <unistd.h>
 
