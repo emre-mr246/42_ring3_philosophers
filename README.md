@@ -20,6 +20,14 @@
 
 The 42 Philosophers project is a simulation of the classic Dining Philosophers problem, which illustrates the challenges of concurrency, synchronization, and resource sharing in a multithreaded environment. The project involves a set number of philosophers who alternately think and eat, but to eat, they need access to limited resources (forks). The goal is to manage these resources and avoid deadlocks or race conditions while ensuring that no philosopher starves. This project tests skills in multithreading, mutexes and semaphores.
 
+The project was tested with two separate testers. Additionally, race conditions were checked using various parameters, such as -fsanitize=thread, passed to the compiler.
+
+I couldn't create the project tree because the subject requires all files to be in the philo and philo_bonus directories.
+
+## Image 📸
+
+![](img/screenshot.png)
+
 ## Mandatory Part(with mutexes) Usage 🔍
 
 1.  In the project's main directory, compile the library using the `make` command.
