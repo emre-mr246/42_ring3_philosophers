@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/09/10 15:05:51 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:17:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	init_philos(t_table *table)
 		i++;
 	}
 	table->philos = philos;
-	return (0);
+	return (1);
 }
 
 int	init_table(t_table **table)
@@ -73,7 +73,7 @@ int	init_table(t_table **table)
 	handle_mutex(&tmp->print_mutex, INIT);
 	handle_mutex(&tmp->table_mutex, INIT);
 	*table = tmp;
-	return (0);
+	return (1);
 }
 
 static void	assign_forks(t_table *table, t_philo *philo)
@@ -113,5 +113,5 @@ int	init_forks(t_table *table)
 	i = -1;
 	while (++i < table->philo_count)
 		assign_forks(table, table->philos[i]);
-	return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:58:49 by emgul             #+#    #+#             */
-/*   Updated: 2024/08/31 07:19:29 by emgul            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:19:42 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_philos(t_table *table)
 		i++;
 	}
 	table->philos = philos;
-	return (0);
+	return (1);
 }
 
 int	init_table(t_table **table)
